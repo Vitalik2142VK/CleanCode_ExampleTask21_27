@@ -65,12 +65,12 @@
   <ItemGroup>
     <Compile Include="CleanCode_ExampleTask21_27\ModelVotingForm.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\PresenterVotingForm.cs" />
-    <Compile Include="IViewForm.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\IViewForm.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\PassportDao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\ViewVotingForm.cs" />
-    <Compile Include="UnsuitableFormatDataPassportException.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\UnsuitableFormatDataPassportException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
