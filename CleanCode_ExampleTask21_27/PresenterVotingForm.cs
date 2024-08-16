@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace CleanCode_ExampleTask21_27
 {
@@ -13,31 +14,25 @@ namespace CleanCode_ExampleTask21_27
             _model = model ?? throw new ArgumentNullException(nameof(model));
         }
 
-        public void Enable()
-        {
-            _model.MessagePrepared += OnShowMessage;
-            _model.AnswerPrepared += OnSendAnswer;
-        }
-
-        public void Disable()
-        {
-            _model.MessagePrepared -= OnShowMessage;
-            _model.AnswerPrepared -= OnSendAnswer;
-        }
-
         public void HandleButtonClick(string passportData)
         {
-            _model.HandlePassportData(passportData);
-        }
+            try
+            {
+                string answer = _model.GiveAnswerAccessBulletin(passportData);
 
-        private void OnShowMessage(string message)
-        {
-            _view.ShowMessageBox(message);
-        }
-
-        private void OnSendAnswer(string answer)
-        {
-            _view.SendAnswer(answer);
+                _view.SendAnswer(answer);
+            } 
+            catch (UnsuitableFormatDataPassportException e)
+            {
+                _view.SendAnswer(e.Message);
+            }
+            catch (Exception e)
+            {
+                if (e is FileNotFoundException || e is ArgumentOutOfRangeException)
+                    _view.ShowMessageBox(e.Message);
+                else
+                    throw;
+            }
         }
     }
 }
