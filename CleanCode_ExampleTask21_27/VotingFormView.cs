@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 namespace CleanCode_ExampleTask21_27
 {
-    class ViewVotingForm
+    class VotingFormView
     {
-        private PresenterVotingForm _presenter;
+        private VotingFormPresenter _presenter;
         private TextBox _passportTextbox;
         private TextBox _textResult;
 
-        public ViewVotingForm(TextBox passportTextbox, TextBox textResult)
+        public VotingFormView(TextBox passportTextbox, TextBox textResult)
         {
             _passportTextbox = passportTextbox ?? throw new ArgumentNullException(nameof(passportTextbox));
             _textResult = textResult ?? throw new ArgumentNullException(nameof(textResult));
@@ -25,16 +25,17 @@ namespace CleanCode_ExampleTask21_27
             MessageBox.Show(message);
         }
 
-        public void SetPresenter(PresenterVotingForm presenter)
+        public void SetPresenter(VotingFormPresenter presenter)
         {
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }
 
         private void CheckButtonClick(object sender, EventArgs e)
         {
-            string passportData = _passportTextbox.Text;
+            string passportData = _passportTextbox.Text.Trim();
+            string passportDataHash = (object)Form1.ComputeSha256Hash(passportData);
 
-            _presenter.HandleButtonClick(passportData);
+            _presenter.HandleButtonClick(passportData, passportDataHash);
         }
     }
 }

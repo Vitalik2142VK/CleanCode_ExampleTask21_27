@@ -63,13 +63,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CleanCode_ExampleTask21_27\ModelVotingForm.cs" />
-    <Compile Include="CleanCode_ExampleTask21_27\PresenterVotingForm.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\Citizen.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\VotingFormModel.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\VotingFormPresenter.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\IViewForm.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\PassportDao.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\Passport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CleanCode_ExampleTask21_27\ViewVotingForm.cs" />
+    <Compile Include="CleanCode_ExampleTask21_27\VotingFormView.cs" />
     <Compile Include="CleanCode_ExampleTask21_27\UnsuitableFormatDataPassportException.cs" />
   </ItemGroup>
   <ItemGroup>

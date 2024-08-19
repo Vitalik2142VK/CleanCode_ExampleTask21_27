@@ -8,9 +8,9 @@ namespace CleanCode_ExampleTask21_27
 {
     class PassportDao
     {
-        public DataTable FindPassportDataTableByNum(string num)
+        public Citizen FindCitizenByPassport(Passport passport)
         {
-            string commandText = string.Format("select * from passports where num='{0}' limit 1;", (object)Form1.ComputeSha256Hash(num));
+            string commandText = string.Format("select * from passports where num='{0}' limit 1;", passport.NumHash);
             string connectionString = string.Format("Data Source=" + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\db.sqlite");
             string message = "";
 
@@ -26,7 +26,14 @@ namespace CleanCode_ExampleTask21_27
 
                 connection.Close();
 
-                return dataTable;
+                if (dataTable.Rows.Count == 0)
+                {
+                    message = $"Паспорт «{passport.Num}» в списке участников дистанционного голосования НЕ НАЙДЕН";
+
+                    throw new InvalidOperationException(message);
+                }
+
+                return new Citizen(passport, Convert.ToBoolean(dataTable.Rows[0].ItemArray[1]));
             }
             catch (SqliteException ex)
             {
