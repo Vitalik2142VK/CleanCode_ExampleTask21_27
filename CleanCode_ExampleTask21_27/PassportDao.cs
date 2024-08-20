@@ -8,9 +8,9 @@ namespace CleanCode_ExampleTask21_27
 {
     class PassportDao
     {
-        public Citizen FindCitizenByPassport(Passport passport)
+        public Citizen FindCitizenByPassportNumHash(Passport passport, string numHash)
         {
-            string commandText = string.Format("select * from passports where num='{0}' limit 1;", passport.NumHash);
+            string commandText = string.Format("select * from passports where num='{0}' limit 1;", numHash);
             string connectionString = string.Format("Data Source=" + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\db.sqlite");
             string message = "";
 

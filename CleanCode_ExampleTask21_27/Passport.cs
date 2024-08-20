@@ -12,12 +12,9 @@ namespace CleanCode_ExampleTask21_27
                 throw new ArgumentNullException(nameof(num));
 
             Num = BringFormatDataPassport(num);
-
-            NumHash = numHash ?? throw new ArgumentNullException(nameof(numHash));
         }
 
         public string Num { get; private set; }
-        public string NumHash { get; private set; }
 
         private string BringFormatDataPassport(string passportData)
         {

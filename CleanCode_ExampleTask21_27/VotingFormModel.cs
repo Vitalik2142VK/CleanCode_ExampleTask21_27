@@ -12,8 +12,9 @@ namespace CleanCode_ExampleTask21_27
             _dao = dao ?? throw new ArgumentNullException(nameof(dao));
         }
 
-        public Citizen GiveAnswerAccessBulletin(string passportData, string passportDataHash)
+        public Citizen GiveAnswerAccessBulletin(string passportData)
         {
+            string passportDataHash = (object)Form1.ComputeSha256Hash(passportData);
             Passport passport = new Passport(passportData, passportDataHash);
 
             return _dao.FindCitizenByPassport(passport);

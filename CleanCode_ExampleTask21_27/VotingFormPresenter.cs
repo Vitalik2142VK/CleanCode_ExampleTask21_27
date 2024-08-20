@@ -14,30 +14,31 @@ namespace CleanCode_ExampleTask21_27
             _model = model ?? throw new ArgumentNullException(nameof(model));
         }
 
-        public void HandleButtonClick(string passportData, string passportDataHash)
+        public void HandleButtonClick(string passportData)
         {
             try
             {
-                Citizen citizen = _model.GiveAnswerAccessBulletin(passportData, passportDataHash);
+                Citizen citizen = _model.GiveAnswerAccessBulletin(passportData);
                 string answer = GetAnswer(citizen);
 
                 _view.SendAnswer(answer);
             }
-            catch (Exception e)
+            catch (FileNotFoundException e)
             {
-                if (e is FileNotFoundException || e is ArgumentOutOfRangeException)
-                {
-                    _view.ShowMessageBox(e.Message);
-                }
-                else if (e is UnsuitableFormatDataPassportException || e is InvalidOperationException)
-                {
-                    if (string.IsNullOrEmpty(e.Message) == false)
-                        _view.SendAnswer(e.Message);
-                }
-                else
-                {
-                    throw;
-                }
+                _view.ShowMessageBox(e.Message);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                _view.ShowMessageBox(e.Message);
+            }
+            catch (UnsuitableFormatDataPassportException e)
+            {
+                _view.SendAnswer(e.Message);
+            }
+            catch (InvalidOperationException e)
+            {
+                if (string.IsNullOrEmpty(e.Message) == false)
+                    _view.SendAnswer(e.Message);
             }
         }
 

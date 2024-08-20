@@ -32,10 +32,7 @@ namespace CleanCode_ExampleTask21_27
 
         private void CheckButtonClick(object sender, EventArgs e)
         {
-            string passportData = _passportTextbox.Text.Trim();
-            string passportDataHash = (object)Form1.ComputeSha256Hash(passportData);
-
-            _presenter.HandleButtonClick(passportData, passportDataHash);
+            _presenter.HandleButtonClick(_passportTextbox.Text);
         }
     }
 }
