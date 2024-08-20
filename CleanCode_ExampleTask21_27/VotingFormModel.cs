@@ -15,9 +15,9 @@ namespace CleanCode_ExampleTask21_27
         public Citizen GiveAnswerAccessBulletin(string passportData)
         {
             string passportDataHash = (object)Form1.ComputeSha256Hash(passportData);
-            Passport passport = new Passport(passportData, passportDataHash);
+            Passport passport = new Passport(passportData);
 
-            return _dao.FindCitizenByPassport(passport);
+            return _dao.FindCitizenByPassportNumHash(passport, passportDataHash);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace CleanCode_ExampleTask21_27
     {
         private const int MinCountPassportSymbols = 10;
 
-        public Passport(string num, string numHash)
+        public Passport(string num)
         {
             if (num == null)
                 throw new ArgumentNullException(nameof(num));
